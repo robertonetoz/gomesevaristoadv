@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-nanquim: #000000;
+  --color-carvao: #14110b;
+  --color-ouro: #c8a04a;
+  --color-ouro-claro: #ebd08a;
+  --color-ouro-velho: #8c6a1f;
+  --color-marfim: #f0eadc;
+  --color-pedra: #a39b89;
+  --color-fio: rgb(200 160 74 / 0.24);
+
+  --font-display: var(--font-bodoni), "Bodoni MT", Didot, serif;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+
+  --ease-saida: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html {
+  background: var(--color-nanquim);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--color-nanquim);
+  color: var(--color-marfim);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+::selection {
+  background: var(--color-ouro);
+  color: var(--color-nanquim);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ouro-claro);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Títulos em Bodoni: só em corpo grande, onde os traços finos se sustentam. */
+@utility titulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  font-optical-sizing: auto;
+}
+
+/* Folha de ouro do monograma. O brilho se desloca quando o elemento recebe hover. */
+@utility folha {
+  background-image: linear-gradient(
+    115deg,
+    #8c6a1f 0%,
+    #c8a04a 24%,
+    #f3dc9a 50%,
+    #c8a04a 76%,
+    #8c6a1f 100%
+  );
+  background-size: 220% 100%;
+  background-position: 18% 0;
+  transition: background-position 0.9s var(--ease-saida);
+}
+
+@utility folha-texto {
+  background-image: linear-gradient(110deg, #c8a04a 0%, #f3dc9a 45%, #c8a04a 75%, #a37d2c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.folha:hover,
+.group:hover .folha {
+  background-position: 82% 0;
+}
+
+/* Wordmark do escritório: versais espaçadas, como no logo. */
+@utility wordmark {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+@keyframes avanco {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
